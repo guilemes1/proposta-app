@@ -20,9 +20,55 @@ public class RabbitMQConfiguration {
     @Value("${rabbitmq.propostaconcluida.exchange}")
     private String exchengePropostaConcluida;
 
+    // Configuracoes
+    @Bean
+    public RabbitAdmin criarRabbitAdmin(ConnectionFactory connectionFactory) {
+        return new RabbitAdmin(connectionFactory);
+    }
+
+    @Bean
+    public ApplicationListener<ApplicationReadyEvent> inicializarAdmin(RabbitAdmin rabbitAdmin) {
+        return event -> rabbitAdmin.initialize();
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate();
+        rabbitTemplate.setConnectionFactory(connectionFactory);
+        rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
+
+        return rabbitTemplate;
+    }
+
+    // Exchanges
+    @Bean
+    public FanoutExchange criarFanoutExchangePropostaPendente() {
+        return ExchangeBuilder.fanoutExchange(exchengePropostaPendente).build();
+    }
+
+    @Bean
+    public FanoutExchange criarFanoutExchangePropostaConcluida() {
+        return ExchangeBuilder.fanoutExchange(exchengePropostaConcluida).build();
+    }
+
+    @Bean
+    public FanoutExchange deadLetterExchange() {
+        return ExchangeBuilder.fanoutExchange("proposta-pendente-dlx.ex").build();
+    }
+
+    // Filas
     @Bean
     public Queue criarFilaPropostaPendenteMsAnaliseCredito() {
-        return QueueBuilder.durable("proposta-pendente.ms-analise-credito").build();
+        return QueueBuilder.durable("proposta-pendente.ms-analise-credito")
+                .maxLength(3L)
+                .maxPriority(10)
+                .deadLetterExchange("proposta-pendente-dlx.ex")
+                .build();
     }
 
     @Bean
@@ -41,25 +87,12 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    public RabbitAdmin criarRabbitAdmin(ConnectionFactory connectionFactory) {
-        return new RabbitAdmin(connectionFactory);
+    public Queue criarFilaPropostaPendenteDlq() {
+        return QueueBuilder.durable("proposta-pendente.dql").build();
     }
 
-    @Bean
-    public ApplicationListener<ApplicationReadyEvent> inicializarAdmin(RabbitAdmin rabbitAdmin) {
-        return event -> rabbitAdmin.initialize();
-    }
 
-    @Bean
-    public FanoutExchange criarFanoutExchangePropostaPendente() {
-        return ExchangeBuilder.fanoutExchange(exchengePropostaPendente).build();
-    }
-
-    @Bean
-    public FanoutExchange criarFanoutExchangePropostaConcluida() {
-        return ExchangeBuilder.fanoutExchange(exchengePropostaConcluida).build();
-    }
-
+    // Bindings
     @Bean
     public Binding criarBindingPropostaPendenteMsAnaliseCredito() {
         return BindingBuilder.bind(criarFilaPropostaPendenteMsAnaliseCredito())
@@ -85,16 +118,8 @@ public class RabbitMQConfiguration {
     }
 
     @Bean
-    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate();
-        rabbitTemplate.setConnectionFactory(connectionFactory);
-        rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter());
-
-        return rabbitTemplate;
+    public Binding criarBindingDlq() {
+        return BindingBuilder.bind(criarFilaPropostaPendenteDlq())
+                .to(deadLetterExchange());
     }
 }
