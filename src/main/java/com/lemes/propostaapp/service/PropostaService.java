@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class PropostaService {
 
-    private PropostaRepository propostaRepository;
+    private final PropostaRepository propostaRepository;
 
-    private NotificacaoRabbitService notificacaoService;
+    private final NotificacaoRabbitService notificacaoService;
 
-    private String exchange;
+    private final String exchange;
 
     public PropostaService(PropostaRepository propostaRepository,
                            NotificacaoRabbitService notificacaoService,
