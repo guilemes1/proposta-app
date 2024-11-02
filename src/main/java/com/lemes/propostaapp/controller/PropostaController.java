@@ -1,8 +1,8 @@
-package com.pieropan.propostaapp.controller;
+package com.lemes.propostaapp.controller;
 
-import com.pieropan.propostaapp.dto.PropostaRequestDto;
-import com.pieropan.propostaapp.dto.PropostaResponseDto;
-import com.pieropan.propostaapp.service.PropostaService;
+import com.lemes.propostaapp.dto.PropostaRequestDto;
+import com.lemes.propostaapp.dto.PropostaResponseDto;
+import com.lemes.propostaapp.service.PropostaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

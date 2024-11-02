@@ -1,6 +1,6 @@
-package com.pieropan.propostaapp.repository;
+package com.lemes.propostaapp.repository;
 
-import com.pieropan.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.entity.Proposta;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

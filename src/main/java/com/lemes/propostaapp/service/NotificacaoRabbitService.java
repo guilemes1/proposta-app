@@ -1,6 +1,6 @@
-package com.pieropan.propostaapp.service;
+package com.lemes.propostaapp.service;
 
-import com.pieropan.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.entity.Proposta;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

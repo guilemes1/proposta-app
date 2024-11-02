@@ -1,10 +1,10 @@
-package com.pieropan.propostaapp.listener;
+package com.lemes.propostaapp.listener;
 
-import com.pieropan.propostaapp.dto.PropostaResponseDto;
-import com.pieropan.propostaapp.entity.Proposta;
-import com.pieropan.propostaapp.mapper.PropostaMapper;
-import com.pieropan.propostaapp.repository.PropostaRepository;
-import com.pieropan.propostaapp.service.WebSocketService;
+import com.lemes.propostaapp.dto.PropostaResponseDto;
+import com.lemes.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.mapper.PropostaMapper;
+import com.lemes.propostaapp.repository.PropostaRepository;
+import com.lemes.propostaapp.service.WebSocketService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

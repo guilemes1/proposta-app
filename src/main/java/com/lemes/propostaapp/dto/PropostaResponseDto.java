@@ -1,4 +1,4 @@
-package com.pieropan.propostaapp.dto;
+package com.lemes.propostaapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,10 +1,10 @@
-package com.pieropan.propostaapp.service;
+package com.lemes.propostaapp.service;
 
-import com.pieropan.propostaapp.dto.PropostaRequestDto;
-import com.pieropan.propostaapp.dto.PropostaResponseDto;
-import com.pieropan.propostaapp.entity.Proposta;
-import com.pieropan.propostaapp.mapper.PropostaMapper;
-import com.pieropan.propostaapp.repository.PropostaRepository;
+import com.lemes.propostaapp.dto.PropostaRequestDto;
+import com.lemes.propostaapp.dto.PropostaResponseDto;
+import com.lemes.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.mapper.PropostaMapper;
+import com.lemes.propostaapp.repository.PropostaRepository;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

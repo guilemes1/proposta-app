@@ -1,8 +1,8 @@
-package com.pieropan.propostaapp.mapper;
+package com.lemes.propostaapp.mapper;
 
-import com.pieropan.propostaapp.dto.PropostaRequestDto;
-import com.pieropan.propostaapp.dto.PropostaResponseDto;
-import com.pieropan.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.dto.PropostaRequestDto;
+import com.lemes.propostaapp.dto.PropostaResponseDto;
+import com.lemes.propostaapp.entity.Proposta;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

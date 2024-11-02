@@ -1,8 +1,8 @@
-package com.pieropan.propostaapp.agendador;
+package com.lemes.propostaapp.agendador;
 
-import com.pieropan.propostaapp.entity.Proposta;
-import com.pieropan.propostaapp.repository.PropostaRepository;
-import com.pieropan.propostaapp.service.NotificacaoRabbitService;
+import com.lemes.propostaapp.entity.Proposta;
+import com.lemes.propostaapp.repository.PropostaRepository;
+import com.lemes.propostaapp.service.NotificacaoRabbitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
